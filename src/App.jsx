@@ -56,6 +56,10 @@ const fruitsResultFilter = myArray.filter(
 console.log("Multiple Result (.filter):", fruitsResultFilter);
 // Observe that the filter method returns an array
 
-
+const search = ["ç","aj"]
+const result = myArray.filter(
+  (currentFruit) => currentFruit.includes(search)
+);
+console.log(result)
 
 export default App
