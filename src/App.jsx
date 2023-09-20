@@ -1,32 +1,64 @@
 import { useState } from 'react'
+import './App.css'
 
-function TestUseState() {
-  const [value, setValue] = useState(0);
-  const [fruit, setFruit] = useState(0);
-
-  const handleAddTwo = () => {
-    setValue(value + 2);
-  }
-
-  const handleClickFruit = (currentFruit) => {
-    setFruit(currentFruit);
-  }
+function App() {
+  const [count, setCount] = useState();
 
   return (
-    <div>
-      <button onClick={handleAddTwo}>Double Counter</button>
-      <h1>Current Value: {value}</h1>
-    <hr />
-    <button onClick={function () { handleClickFruit("Maçã")}}>Maçã</button>
-    <button onClick={() => handleClickFruit("Banana")}>Banana</button>
-    <button onClick={() => handleClickFruit("Morango")}>Morango</button>
-    {fruit && (<h1>Clicked on: {fruit}</h1>)}
-    {!fruit && (<h1>Click on some of the fruits</h1>)}
-    </div>
+    <>
+      <section className='section-main'>
+        <div className='container-card'>
+          <h1>
+            Cadastrar Tarefa
+          </h1>
+          <hr />
+          <form>
+            <label for='title'>Título</label>
+              <input 
+                type='text'
+                name='title'
+                id='title'
+                placeholder='Digite o titulo da tarefa'
+              />
+            <label for='category'>Categoria</label>
+              <select name='category'>
+                <option value=''>Selecione uma categoria</option>
+                <option value='UX/UI'>UX/UI</option>
+                <option value='Testes'>Testes</option>
+              </select>
+            <label for='members'>Members</label>
+              <select name='members'>
+                <option value=''>Selecione um membro da equipe</option>
+                <option value='name1'>Name1</option>
+                <option value='name2'>Name2</option>
+              </select>
+              <button className='btn-register'>
+                Cadastrar
+              </button>
+          </form>
+        </div>
+      </section>
+      <section>
+        <section className='section-main'>
+          <div className='container-card'>
+            <h1>
+              Lista de Tarefas
+            </h1>
+          </div>
+          <footer className='footer-main'>
+            <p>
+              <strong>
+                Intodução ao Desenvolvimento Front-end com React
+              </strong>
+            </p>
+          </footer>
+        </section>
+      </section>
+    </>
   )
 }
 
-export default TestUseState
+export default App
 
 
 
