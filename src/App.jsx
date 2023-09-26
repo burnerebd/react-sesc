@@ -8,8 +8,18 @@ function App() {
   const [categories] = useState(dataCategories);
   const [members] = useState(dataMembers);
   const [tasks, setTasks] = useState(dataTasks);
+  const [currentTask, setCurrentTask] = useState('');
 
-  // console.log(dataCategories)
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!currentTask) {
+      alert("Todos os campos são obrigatórios");
+      return;
+    } else {
+      alert("Você digitou: " + `${currentTask}`)
+    }
+  }
+
 
   return (
     <>
@@ -19,38 +29,41 @@ function App() {
             Cadastrar Tarefa
           </h1>
           <hr />
-          <form>
+          <form onSubmit={handleSubmit}>
             <label htmlFor='title'>Título</label>
-              <input 
-                type='text'
-                name='title'
-                id='title'
-                placeholder='Digite o titulo da tarefa'
-              />
+            <input
+              type='text'
+              name='title'
+              id='title'
+              placeholder='Digite o titulo da tarefa'
+              value={currentTask}
+              onChange={(event) => setCurrentTask(event.target.value)}
+            />
             <label htmlFor='category'>Categoria</label>
-              <select name='category'>
-                <option value=''>Selecione uma categoria</option>
-                {categories && categories.map((category => {
-                  return (
-                    <React.Fragment key={category.id}>
-                      <option value={category.title}>{category.title}</option>
-                    </React.Fragment>
-                  )}))}
-              </select>
+            <select name='category'>
+              <option value=''>Selecione uma categoria</option>
+              {categories && categories.map((category => {
+                return (
+                  <React.Fragment key={category.id}>
+                    <option value={category.title}>{category.title}</option>
+                  </React.Fragment>
+                )
+              }))}
+            </select>
             <label htmlFor='members'>Members</label>
-              <select name='members'>
-                <option value=''>Selecione um membro da equipe</option>
-                {members && members.map((member => {
-                  return (
-                    <React.Fragment>
-                        <option value={member.profile}>{member.name}</option>
-                    </React.Fragment>
-                  )
-                }))}
-              </select>
-              <button className='btn-register'>
-                Cadastrar
-              </button>
+            <select name='members'>
+              <option value=''>Selecione um membro da equipe</option>
+              {members && members.map((member => {
+                return (
+                  <React.Fragment key={member.id}>
+                    <option value={member.profile}>{member.name}</option>
+                  </React.Fragment>
+                )
+              }))}
+            </select>
+            <button className='btn-register'>
+              Cadastrar
+            </button>
           </form>
         </div>
       </section>
@@ -68,9 +81,9 @@ function App() {
                     <img src={`https://github.com/${task.member}.png`} className='task-img-member'>
                     </img>
                     <div className='task-content'>
-                      <h2 className='task-title'>Programar tela de listagem de produtos</h2>
-                      <span className='task-member'>andersonstudioa</span>
-                      <span className='task-category'>Development</span>
+                      <h2 className='task-title'>{task.title}</h2>
+                      <span className='task-member'>{task.member}</span>
+                      <span className='task-category'>{task.category}</span>
                       <span className={`task-${task.status}`}>{task.status}</span>
                     </div>
                     <div className='task-actions'>
@@ -82,21 +95,6 @@ function App() {
                 </React.Fragment>
               )
             })}
-            <div className='task'>
-              <img src='https://github.com/andersonstudioa.png' className='task-img-member'>
-                </img>
-                <div className='task-content'>
-                  <h2 className='task-title'>Programar tela de listagem de produtos</h2>
-                  <span className='task-member'>andersonstudioa</span>
-                  <span className='task-category'>Development</span>
-                  <span className='task-todo'>todo</span>
-                </div>
-                <div className='task-actions'>
-                  <button className='btn-start'>Iniciar</button>
-                  <button className='btn-close'>Finalizar</button>
-                  <button className='btn-delete'>x</button>
-                </div>
-            </div>
           </div>
           <footer className='footer-main'>
             <p>
@@ -112,8 +110,3 @@ function App() {
 }
 
 export default App
-
-
-
-
-
