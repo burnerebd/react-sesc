@@ -27,9 +27,8 @@ function App() {
     setTasks(newTaskArr);
   }
 
-  const clearValues = (...saidSetFunction) => {
-    for (const n of saidSetFunction) n("");
-    
+  const clearValues = (...functions) => {
+    for (const elem of functions) elem("");
   }
 
   const handleSubmit = (event) => {
@@ -40,9 +39,6 @@ function App() {
     }
     addTask(currentTask, currentCategory, currentCategory);
     clearValues(setCurrentCategory, setCurrentMembers, setCurrentTask);
-    // else {
-    //   alert("Você digitou \n\n" + `Tarefa: ${currentTask}\n\n` + `Categoria: ${currentCategory}\n\n` +`Membro: ${currentMembers}\n`)
-    // }
   }
 
 
