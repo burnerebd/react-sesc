@@ -9,15 +9,40 @@ function App() {
   const [members] = useState(dataMembers);
   const [tasks, setTasks] = useState(dataTasks);
   const [currentTask, setCurrentTask] = useState('');
+  const [currentCategory, setCurrentCategory] = useState('');
+  const [currentMembers, setCurrentMembers] = useState('');
+
+  const addTask = (title, category, member) => {
+    if (!title || !category || !member) return;
+    const newTaskArr = [
+      ...tasks,
+      {
+        id: Math.floor(Math.random() * 10000),
+        title,
+        category,
+        member,
+        status: "todo",
+      }
+    ];
+    setTasks(newTaskArr);
+  }
+
+  const clearValues = (...saidSetFunction) => {
+    for (const n of saidSetFunction) n("");
+    
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!currentTask) {
+    if (!currentTask || !currentCategory || !currentMembers) {
       alert("Todos os campos são obrigatórios");
       return;
-    } else {
-      alert("Você digitou: " + `${currentTask}`)
     }
+    addTask(currentTask, currentCategory, currentCategory);
+    clearValues(setCurrentCategory, setCurrentMembers, setCurrentTask);
+    // else {
+    //   alert("Você digitou \n\n" + `Tarefa: ${currentTask}\n\n` + `Categoria: ${currentCategory}\n\n` +`Membro: ${currentMembers}\n`)
+    // }
   }
 
 
@@ -40,7 +65,11 @@ function App() {
               onChange={(event) => setCurrentTask(event.target.value)}
             />
             <label htmlFor='category'>Categoria</label>
-            <select name='category'>
+            <select
+              name='category'
+              value={currentCategory}
+              onChange={(event) => {setCurrentCategory(event.target.value)}}
+            >
               <option value=''>Selecione uma categoria</option>
               {categories && categories.map((category => {
                 return (
@@ -50,13 +79,17 @@ function App() {
                 )
               }))}
             </select>
-            <label htmlFor='members'>Members</label>
-            <select name='members'>
+            <label htmlFor='member'>Members</label>
+            <select
+              name='member'
+              value={currentMembers}
+              onChange={(event) => {setCurrentMembers(event.target.value)}}
+            >
               <option value=''>Selecione um membro da equipe</option>
               {members && members.map((member => {
                 return (
                   <React.Fragment key={member.id}>
-                    <option value={member.profile}>{member.name}</option>
+                    <option value={member.name}>{member.name}</option>
                   </React.Fragment>
                 )
               }))}
