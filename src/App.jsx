@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
 import './App.css'
-import dataCategories from './data/data-categories.json'
-import dataMembers from './data/data-members.json'
+// import dataCategories from './data/data-categories.json'
+// import dataMembers from './data/data-members.json'
 import dataTasks from './data/data-tasks.json'
+import { Footer, TaskForm, TaskList } from './components'
 
 function App() {
-  const [categories] = useState(dataCategories);
-  const [members] = useState(dataMembers);
+  /* const [categories] = useState(dataCategories);
+  const [members] = useState(dataMembers); */
   const [tasks, setTasks] = useState(dataTasks);
-  const [currentTask, setCurrentTask] = useState('');
-  const [currentCategory, setCurrentCategory] = useState('');
-  const [currentMembers, setCurrentMembers] = useState('');
+  // const [currentTask, setCurrentTask] = useState('');
+  // const [currentCategory, setCurrentCategory] = useState('');
+  // const [currentMembers, setCurrentMembers] = useState('');
 
   const addTask = (title, category, member) => {
-    if (!title || !category || !member) return;
+    if (!title || !category || !member) {
+        alert ("Todos os campos são obrigatórios");
+        return;
+    }
     const newTaskArr = [
       ...tasks,
       {
@@ -27,29 +31,58 @@ function App() {
     setTasks(newTaskArr);
   }
 
-  const clearValues = (...functions) => {
-    for (const elem of functions) elem("");
-  }
+  // const clearValues = (...functions) => {
+  //   for (const elem of functions) elem("");
+  // }
+  //
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   if (!currentTask || !currentCategory || !currentMembers) {
+  //     alert("Todos os campos são obrigatórios");
+  //     return;
+  //   }
+  //   addTask(currentTask, currentCategory, currentCategory);
+  //   clearValues(setCurrentCategory, setCurrentMembers, setCurrentTask);
+  // }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!currentTask || !currentCategory || !currentMembers) {
-      alert("Todos os campos são obrigatórios");
-      return;
+    const deleteTask = (id) => {
+        const newTasks = [...tasks];
+        const filteredTasks = newTasks.filter(task => task.id !== id ? task : null)
+        setTasks(filteredTasks);
     }
-    addTask(currentTask, currentCategory, currentCategory);
-    clearValues(setCurrentCategory, setCurrentMembers, setCurrentTask);
-  }
 
+    const startTask = (id) => {
+        const newTasks = [...tasks];
+        newTasks.map((task) => 
+            task.id === id ? (task.status = 'todo') : task
+        );
+        setTasks(newTasks);
+    }
+
+    const closeTask = (id) => {
+        const newTasks = [...tasks];
+        newTasks.map((task) => 
+            task.id === id ? (task.status = 'done') : task
+        );
+        setTasks(newTasks);
+    }
 
   return (
-    <>
-      <section className='section-main'>
+      <>
+      <TaskForm addTask={addTask} />
+      <TaskList
+          tasks={tasks}
+          deleteTask={deleteTask}
+          startTask={startTask}
+          closeTask={closeTask}
+      />
+      <Footer />
+      {/* <section className='section-main'>
         <div className='container-card'>
           <h1>
             Cadastrar Tarefa
           </h1>
-          <hr />
+          <hr /> 
           <form onSubmit={handleSubmit}>
             <label htmlFor='title'>Título</label>
             <input
@@ -95,8 +128,8 @@ function App() {
             </button>
           </form>
         </div>
-      </section>
-      <section>
+      </section> */}
+      {/* <section>
         <section className='section-main'>
           <div className='container-card'>
             <h1>
@@ -125,15 +158,8 @@ function App() {
               )
             })}
           </div>
-          <footer className='footer-main'>
-            <p>
-              <strong>
-                Intodução ao Desenvolvimento Front-end com React
-              </strong>
-            </p>
-          </footer>
         </section>
-      </section>
+      </section> */}
     </>
   )
 }
