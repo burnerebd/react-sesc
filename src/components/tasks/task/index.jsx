@@ -1,3 +1,5 @@
+import './style.css'
+
 function Task({id, member, title, category, status, deleteTask, startTask, closeTask}) {
   return (
     <>

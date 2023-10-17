@@ -46,26 +46,28 @@ function App() {
   // }
 
     const deleteTask = (id) => {
-        const newTasks = [...tasks];
+        const newTasks = [...tasks]; 
         const filteredTasks = newTasks.filter(task => task.id !== id ? task : null)
         setTasks(filteredTasks);
     }
 
     const startTask = (id) => {
-        const newTasks = [...tasks];
+        const newTasks = [...tasks];  // assign method might be used if we wanted to change the 'tasks' array directly instead of creating a new one
         newTasks.map((task) => 
-            task.id === id ? (task.status = 'todo') : task
+            task.id === id ? (task.status = 'doing') : task
         );
         setTasks(newTasks);
     }
 
     const closeTask = (id) => {
-        const newTasks = [...tasks];
+        const newTasks = [...tasks];  // assign method might be used if we wanted to change the 'tasks' array directly instead of creating a new one
         newTasks.map((task) => 
             task.id === id ? (task.status = 'done') : task
         );
         setTasks(newTasks);
     }
+
+   
 
   return (
       <>
