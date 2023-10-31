@@ -131,6 +131,7 @@ input, select {
 }
 
 .btn-start, .btn-close, .btn-delete, .btn-register {
+  text-decoration: none;
   padding: 10px 30px;
   margin: 5px 10px 5px 0px;
   border: none;
