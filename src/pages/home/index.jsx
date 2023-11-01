@@ -53,8 +53,10 @@ function HomePage() {
               sx={{display: 'flex', justifyContent: 'center', paddingBottom: 4}}
             >
               <Link
+                to="https://github.com/burnerebd/react-sesc"
                 className="btn-close"
                 target="_blank"
+                // ref="noreferrer"
               >
                 Repositório
               </Link>
@@ -83,9 +85,10 @@ function HomePage() {
               sx={{display: 'flex', justifyContent: 'center', paddingBottom: 4}}
             >
               <Link
+                to="projects"
                 className="btn-close"
               >
-                Repositório
+                Projetos
               </Link>
             </CardActions>
           </Card>
@@ -113,10 +116,10 @@ function HomePage() {
               sx={{display: 'flex', justifyContent: 'center', paddingBottom: 4}}
             >
               <Link
+                to="tasks"
                 className="btn-close"
-                href="./tasks"
               >
-                Repositório
+                Tarefas
               </Link>
             </CardActions>
           </Card>
