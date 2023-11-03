@@ -1,12 +1,21 @@
-import { Container, Card, Grid, Typography, CardMedia, CardContent, CardActions } from "@mui/material"
-import { Link } from "react-router-dom"
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  Grid,
+  Typography,
+  CardActions,
+} from "@mui/material";
+
+import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
     <Container
       maxWidth="md"
       sx={{
-        marginY: '20px'
+        marginY: "20px",
       }}
     >
       <Grid
@@ -16,119 +25,128 @@ function HomePage() {
         alignItems="flex-start"
         spacing={2}
       >
-        <Grid
-          item
-          lg={12}
-        >
+        <Grid item lg={12}>
           <Card>
             <Typography
               variant="h1"
               fontSize={30}
               padding={3}
             >
-              Introdução ao Desenvolvimento Front-end com React
+              Introdução ao Desenvolvimento
+              Front-end com React
             </Typography>
           </Card>
         </Grid>
-
-        <Grid
-          item
-          lg={4}
-        >
+        <Grid item lg={4}>
           <Card>
             <CardMedia
-              sx={{height: 140}}
-              image="https://picsum.photos/id/1/600/600"
-              title="O Curso"
+              sx={{ height: 140 }}
+              image="https://picsum.photos/id/1/200/300"
+              title="Bem-vindo"
             />
             <CardContent>
-              <Typography variant="h5" >
-                Nosso Curso
+              <Typography gutterBottom variant="h5" component="div">
+                Nosso curso
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Texto do Curso...
+                Este curso convida diferentes públicos a experimentarem o React,
+                uma das bibliotecas JavaScript mais utilizadas na atualidade.
+                Durante as aulas, vamos explorar o potencial da criação de
+                componentes dinâmicos e construir uma aplicação do zero a partir
+                das boas práticas de desenvolvimento front-end e do consumo de
+                APIs.
               </Typography>
             </CardContent>
             <CardActions
-              sx={{display: 'flex', justifyContent: 'center', paddingBottom: 4}}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                paddingBottom: 4
+              }}
             >
               <Link
-                to="https://github.com/burnerebd/react-sesc"
+                to='https://github.com/andersonstudioa/sesc-react-app'
                 className="btn-close"
-                target="_blank"
-                // ref="noreferrer"
               >
                 Repositório
               </Link>
             </CardActions>
           </Card>
         </Grid>
-        <Grid
-          item
-          lg={4}
-        >
+        <Grid item lg={4}>
           <Card>
             <CardMedia
-              sx={{height: 140}}
-              image="https://picsum.photos/id/2/600/600"
-              title="O Curso"
+              sx={{ height: 140 }}
+              image="https://picsum.photos/id/3/200/300"
+              title="Bem-vindo"
             />
             <CardContent>
-              <Typography variant="h5" >
+              <Typography gutterBottom variant="h5" component="div">
                 Projetos
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Texto dos Projetos...
+                Um projeto em negócio e ciência é normalmente definido como um
+                empreendimento, frequentemente envolvendo pesquisa ou desenho,
+                que tem como objetivo alcançar um resultado exclusivo. Em geral
+                um projeto possui três características fundamentais: tempo
+                (início e fim), recursos (pessoas, ferramentas etc) e trata de
+                algo que não existia anteriormente.
               </Typography>
             </CardContent>
             <CardActions
-              sx={{display: 'flex', justifyContent: 'center', paddingBottom: 4}}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                paddingBottom: 4
+              }}
             >
               <Link
-                to="projects"
+                to='/projects'
                 className="btn-close"
               >
-                Projetos
+                Gerenciar Projetos
               </Link>
             </CardActions>
           </Card>
         </Grid>
-
-        <Grid
-          item
-          lg={4}
-        >
+        <Grid item lg={4}>
           <Card>
             <CardMedia
-              sx={{height: 140}}
-              image="https://picsum.photos/id/3/600/600"
-              title="O Curso"
+              sx={{ height: 140 }}
+              image="https://picsum.photos/id/4/200/300"
+              title="Bem-vindo"
             />
             <CardContent>
-              <Typography variant="h5" >
+              <Typography gutterBottom variant="h5" component="div">
                 Tarefas
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Texto das Tarefas...
+                Em gerenciamento de projetos, uma tarefa é uma atividade que
+                precisa ser realizada dentro de um período de tempo definido ou
+                por um prazo. Uma tarefa pode ser dividida em atribuições que
+                também devem ter uma data de início e fim definidas ou um prazo
+                para a conclusão.
               </Typography>
             </CardContent>
             <CardActions
-              sx={{display: 'flex', justifyContent: 'center', paddingBottom: 4}}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                paddingBottom: 4
+              }}
             >
               <Link
-                to="tasks"
+                to='/tasks'
                 className="btn-close"
               >
-                Tarefas
+                Gerenciar Tarefas
               </Link>
             </CardActions>
           </Card>
         </Grid>
-
-
-      </Grid> 
+      </Grid>
     </Container>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;
