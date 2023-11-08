@@ -1,18 +1,18 @@
-import './style.css'
-
+// import dataCategories from '../../../data/data-categories.json';
+// import dataMembers from '../../../data/data-members.json';
+// import dataProjects from '../../../data/data-projects.json';
+import dataTeams from '../../../data/data-teams.json';
 import React, { useState } from 'react'
-//import '../../../App.css'
+import './style.css'
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import ptBR from 'date-fns/locale/pt-BR';
 
-import dataProjects from '../../../data/data-projects.json'
-import dataCategories from '../../../data/data-categories.json'
-import dataMembers from '../../../data/data-members.json'
+function ProjectForm ( {addProject} ) {
 
-function ProjectForm({addProject}) {
-
-  const [projects] = useState(dataProjects);
+  // const [projects] = useState(dataProjects);
   const [teams] = useState(dataTeams);
-  const [categories] = useState(dataCategories);
-  const [members] = useState(dataMembers);
+  // const [members] = useState(dataMembers);
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentDescription, setCurrentDescription] = useState("");
   const [currentStartDate, setCurrentStartDate] = useState("");
@@ -22,59 +22,106 @@ function ProjectForm({addProject}) {
   const [currentStatus, setCurrentStatus] = useState("");
   const [currentTeam, setCurrentTeam] = useState("");
 
-  const [currentProject, setCurrentProject] = useState("");
-  const [currentDescription, setCurrentDescription] = useState("");
-  const [currentMember, setCurrentMember] = useState("");
-
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); //Impede o navegador de recarregar a página
     //Validação dos campos
-    if(!currentProject || !currentDescription || !currentMember) {
-      alert ("Todos os campos são obrigatórios");
+    if(
+        !currentTitle || 
+        !currentDescription || 
+        !currentStartDate ||
+        !currentDeadline ||
+        !currentEndDate ||
+        !currentClient ||
+        !currentStatus ||
+        !currentTeam
+    ) {
+      alert("Todos os campos são obrigatórios!");
       return;
     }
-    //console.log(currentProject, currentDescription, currentMember);
-    addProject(currentProject, currentDescription, currentMember);
-    setCurrentProject("");
+    //Adicionar uma nova tarefa à lista de tarefas
+    addProject(
+        currentTitle,
+        currentDescription,
+        currentStartDate,
+        currentDeadline,
+        currentEndDate,
+        currentClient,
+        currentStatus,
+        currentTeam
+    );
+    setCurrentTitle("");
     setCurrentDescription("");
-    setCurrentMember("");
+    setCurrentStartDate("");
+    setCurrentDeadline("");
+    setCurrentEndDate("");
+    setCurrentClient("");
+    setCurrentTitle("");
+    setCurrentStatus("");
+    setCurrentTeam("");
+
+    alert("Projeto cadastrado com sucesso!");
   }
 
   return (
     <section className='section-main'>
-        <div className='container-card'>
-          <h1>Cadastrar tarefa</h1>
-          <hr />
-          <form onSubmit={handleSubmit}>
-            <label>Título</label>
-            <input type='text' name='title' value={currentProject} onChange={(e) => setCurrentProject(e.target.value)} placeholder='Digite o título da tarefa'/>
-            <label>Categoria</label>
-            <select name='description' value={currentDescription} onChange={(e) => setCurrentDescription(e.target.value)}>
-              <option value="">Selecione uma categoria</option>
-              {categories && categories.map((description) => {
-                return (
-                  <React.Fragment key={description.id}>
-                    <option value={description.title}>{description.title}</option>
-                  </React.Fragment>
-                )
-              })}
-            </select>
-            <label>Membro</label>
-            <select name='member' value={currentMember} onChange={(e) => setCurrentMember(e.target.value)}>
-              <option value="">Selecione um membro da equipe</option>
-              {members && members.map((member) => {
-                return (
-                  <React.Fragment key={member.id}>
-                    <option value={member.profile}>{member.name}</option>
-                  </React.Fragment>
-                )
-              })}
-            </select>
-            <button className='btn-register' type='submit'>Cadastrar</button>
-          </form>
-        </div>
-      </section>
+      <div className='container-card'>
+        <h1>Cadastrar projeto</h1>
+        <hr />
+        <form onSubmit={handleSubmit}>
+          <label htmlFor='title'>Título</label>
+          <input
+            type='text'
+            name='title'
+            id='title'
+            placeholder='Digite o título'
+            value={currentTitle}
+            onChange={
+              (event) => 
+              setCurrentTitle(event.target.value)
+            }
+          />
+          <label htmlFor='description'>Descrição</label>
+          <textarea
+            name='description'
+            id='description'
+            placeholder='Digite a descrição do projeto'
+            value={currentDescription}
+            onChange={
+              (event) => 
+              setCurrentDescription(event.target.value)
+            }
+          />
+          <label htmlFor='team'>Equipe</label>
+          <select
+            name='team'
+            id='team'
+            value={currentTeam}
+            onChange={
+              (event) => 
+                setCurrentTeam(event.target.value)
+            }
+          >
+            <option value="">Selecione uma equipe</option>
+            {teams && teams.map((team => {
+              return (
+                <React.Fragment key={team.id}>
+                  <option value={team.id}>{team.name}</option>
+                </React.Fragment>
+              )
+            }))}
+          </select>
+          <div>
+          <LocalizationProvider adapterLocale={ptBR} dateAdapter={AdapterDateFns}>
+            <DatePicker />
+          </LocalizationProvider>
+          </div>
+          <button className='btn-register' type='submit'>
+            Cadastrar
+          </button>
+        </form>
+      </div>
+    </section>
   )
 }
 
-export default ProjectForm; 
+export default ProjectForm;

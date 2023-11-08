@@ -3,7 +3,7 @@ import './style.css'
 import React from 'react'
 import Task from '../task'
 
-function TasksList ({tasks, deleteTask, startTask, closeTask}) {
+function TaskList ({tasks, deleteTask, startTask, closeTask}) {
   return (
     <section className='section-main'>
       <div className='container-card'>
@@ -30,4 +30,4 @@ function TasksList ({tasks, deleteTask, startTask, closeTask}) {
   )
 }
 
-export default TasksList 
+export default TaskList 
