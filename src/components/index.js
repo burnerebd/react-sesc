@@ -16,4 +16,4 @@ export {
   Task,
   TaskForm,
   TaskList,
-}
+};

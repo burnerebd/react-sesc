@@ -1,33 +1,34 @@
-import './style.css'
+import "./style.css";
 
-import React from 'react'
-import Task from '../task'
+import React from "react";
+import Task from "../task";
 
-function TaskList ({tasks, deleteTask, startTask, closeTask}) {
+function TaskList({ tasks, deleteTask, startTask, closeTask }) {
   return (
-    <section className='section-main'>
-      <div className='container-card'>
+    <section className="section-main">
+      <div className="container-card">
         <h1>Lista de tarefas</h1>
         <hr />
-        {tasks && tasks.map((task) => {
-          return (
-            <React.Fragment key={task.id}>
-              <Task 
-                id={task.id}
-                member={task.member}
-                title={task.title}
-                category={task.category}
-                status={task.status}
-                deleteTask={deleteTask}
-                startTask={startTask}
-                closeTask={closeTask}
-              />
-            </React.Fragment>
-          )
-        })}
+        {tasks &&
+          tasks.map((task) => {
+            return (
+              <React.Fragment key={task.id}>
+                <Task
+                  id={task.id}
+                  member={task.member}
+                  title={task.title}
+                  category={task.category}
+                  status={task.status}
+                  deleteTask={deleteTask}
+                  startTask={startTask}
+                  closeTask={closeTask}
+                />
+              </React.Fragment>
+            );
+          })}
       </div>
     </section>
-  )
+  );
 }
 
-export default TaskList 
+export default TaskList;

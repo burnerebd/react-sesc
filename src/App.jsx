@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
+import { Footer, TaskForm, TaskList } from "./components";
 // import dataCategories from './data/data-categories.json'
 // import dataMembers from './data/data-members.json'
-import dataTasks from './data/data-tasks.json'
-import { Footer, TaskForm, TaskList } from './components'
+import dataTasks from "./data/data-tasks.json";
 
 function App() {
   /* const [categories] = useState(dataCategories);
@@ -15,8 +15,8 @@ function App() {
 
   const addTask = (title, category, member) => {
     if (!title || !category || !member) {
-        alert ("Todos os campos são obrigatórios");
-        return;
+      alert("Todos os campos são obrigatórios");
+      return;
     }
     const newTaskArr = [
       ...tasks,
@@ -26,10 +26,10 @@ function App() {
         category,
         member,
         status: "todo",
-      }
+      },
     ];
     setTasks(newTaskArr);
-  }
+  };
 
   // const clearValues = (...functions) => {
   //   for (const elem of functions) elem("");
@@ -45,38 +45,40 @@ function App() {
   //   clearValues(setCurrentCategory, setCurrentMembers, setCurrentTask);
   // }
 
-    const deleteTask = (id) => {
-        const newTasks = [...tasks]; 
-        const filteredTasks = newTasks.filter(task => task.id !== id ? task : null)
-        setTasks(filteredTasks);
-    }
+  const deleteTask = (id) => {
+    const newTasks = [...tasks];
+    const filteredTasks = newTasks.filter((task) =>
+      task.id !== id ? task : null,
+    );
+    setTasks(filteredTasks);
+  };
 
-    const startTask = (id) => {
-        const newTasks = [...tasks];  // assign method might be used if we wanted to change the 'tasks' array directly instead of creating a new one
-        newTasks.map((task) => 
-            task.id === id ? (task.status = 'doing') : task
-        );
-        setTasks(newTasks);
-    }
+  const startTask = (id) => {
+    const newTasks = [...tasks]; // assign method might be used if we wanted to change the 'tasks' array directly instead of creating a new one
+    newTasks.map((task) => {
+      if (task.id === id) task.status = "doing";
+      else task;
+    });
+    setTasks(newTasks);
+  };
 
-    const closeTask = (id) => {
-        const newTasks = [...tasks];  // assign method might be used if we wanted to change the 'tasks' array directly instead of creating a new one
-        newTasks.map((task) => 
-            task.id === id ? (task.status = 'done') : task
-        );
-        setTasks(newTasks);
-    }
-
-   
+  const closeTask = (id) => {
+    const newTasks = [...tasks]; // assign method might be used if we wanted to change the 'tasks' array directly instead of creating a new one
+    newTasks.map((task) => {
+      if (task.id === id) task.status = "done";
+      else task;
+    });
+    setTasks(newTasks);
+  };
 
   return (
-      <>
+    <>
       <TaskForm addTask={addTask} />
       <TaskList
-          tasks={tasks}
-          deleteTask={deleteTask}
-          startTask={startTask}
-          closeTask={closeTask}
+        tasks={tasks}
+        deleteTask={deleteTask}
+        startTask={startTask}
+        closeTask={closeTask}
       />
       <Footer />
       {/* <section className='section-main'>
@@ -163,7 +165,7 @@ function App() {
         </section>
       </section> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
