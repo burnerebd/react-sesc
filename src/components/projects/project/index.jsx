@@ -1,4 +1,5 @@
 import { Grid, Typography } from "@mui/material";
+import "./style.css";
 
 function Project({
   id,
@@ -14,12 +15,13 @@ function Project({
 }) {
   return (
     <>
-      <Grid container>
+    <div className="project">
+      <Grid container className="project-content" direction={"row"}>
         <Grid item xs={12}>
-          <Typography variant="body1">{title}</Typography>
+          <Typography className="project-title">{title}</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="body1">{description}</Typography>
+          <Typography className="project-actions" variant="body1">{description}</Typography>
         </Grid>
         <Grid item xs={4}>
           <Typography variant="body1">{client}</Typography>
@@ -33,13 +35,14 @@ function Project({
           <Typography variant="body1">Término {endDate}</Typography>
           <Typography variant="body1">{status}</Typography>
         </Grid>
-        <div className="task-actions">
+        <div className="project-actions">
           <button className="btn-delete" onClick={() => deleteProject(id)}>
             x
           </button>
         </div>
       </Grid>
       <hr />
+    </div>
     </>
   );
 }

@@ -1,13 +1,15 @@
+import { Typography } from "@mui/material";
 import Project from "../project";
 
 function ProjectsList({ projects, deleteProject }) {
   return (
     <section className="section-main">
       <div className="container-card">
-        <h1>Lista de Projetos</h1>
+        <Typography variant="h1" fontSize={32} fontWeight={500}>
+          Lista de Projetos
+        </Typography>
         <hr />
 
-        {/* INÍCIO DA TASK */}
         {projects &&
           projects.map((project) => {
             return (
@@ -26,7 +28,6 @@ function ProjectsList({ projects, deleteProject }) {
               />
             );
           })}
-        {/* FIM DA TASK */}
       </div>
     </section>
   );

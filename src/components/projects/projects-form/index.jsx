@@ -65,7 +65,7 @@ function ProjectForm({ addProject }) {
   return (
     <section className="section-main">
       <div className="container-card">
-        <Typography variant="h1" fontSize={32} fontWeight="bold">
+        <Typography variant="h1" fontSize={32} fontWeight={500}>
           Cadastrar projeto
         </Typography>
         <hr />
