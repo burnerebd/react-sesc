@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import "./style.css";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { TextField, MenuItem, Button, Typography } from "@mui/material";
+import { Box, TextField, MenuItem, Button, Typography } from "@mui/material";
 import ptBR from "date-fns/locale/pt-BR";
 
 function ProjectForm({ addProject }) {
@@ -16,9 +16,9 @@ function ProjectForm({ addProject }) {
   // const [members] = useState(dataMembers);
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentDescription, setCurrentDescription] = useState("");
-  const [currentStartDate, setCurrentStartDate] = useState("");
-  const [currentDeadline, setCurrentDeadline] = useState("");
-  const [currentEndDate, setCurrentEndDate] = useState("");
+  const [currentStartDate, setCurrentStartDate] = useState(null);
+  const [currentDeadline, setCurrentDeadline] = useState(null);
+  const [currentEndDate, setCurrentEndDate] = useState(null);
   const [currentClient, setCurrentClient] = useState("");
   const [currentStatus, setCurrentStatus] = useState("");
 
@@ -38,17 +38,29 @@ function ProjectForm({ addProject }) {
       alert("Todos os campos são obrigatórios!");
       return;
     }
-    //Adicionar uma nova tarefa à lista de tarefas
-    addProject(
-      currentTitle,
-      currentDescription,
-      currentStartDate,
-      currentDeadline,
-      currentEndDate,
-      currentClient,
-      currentStatus,
-      currentTeam,
-    );
+
+  const addProject = (title, category, member) => {
+    if(!title || !category || !member) return;
+    const newProjectArray = [
+      ...projects,
+      {
+        id: Math.floor(Math.random() * 10000),
+        title,
+        category,
+        member,
+        status: "todo"
+      }
+    ];
+    setProjects(newProjectArray);
+  }
+
+  const deleteProject = (id) => {
+    const newProjects = [...projects];
+    const filteredProjects = newProjects.filter(project => project.id !== id ? project : null);
+    setProjects(filteredProjects);
+  }
+
+
     setCurrentTitle("");
     setCurrentDescription("");
     setCurrentStartDate("");
@@ -65,6 +77,7 @@ function ProjectForm({ addProject }) {
   return (
     <section className="section-main">
       <div className="container-card">
+        <Box sx={{'& MultiTextField-root': {marginY: 1, width: '100%'}}}>
         <Typography variant="h1" fontSize={32} fontWeight={500}>
           Cadastrar projeto
         </Typography>
@@ -85,6 +98,7 @@ function ProjectForm({ addProject }) {
               label="Descrição"
               id="description"
               placeholder="Digite a descrição do projeto"
+              rows={4}
               value={currentDescription}
               onChange={(event) => setCurrentDescription(event.target.value)}
             />
@@ -107,15 +121,31 @@ function ProjectForm({ addProject }) {
                 })}
             </TextField>
           </div>
-          <div>
+          <Box sx={{display: "flex", flexDirection: {xs: "column", sm: "column",md: "row",lg:"row",xl:"row"}, gap: {xs: '0', sm: '0', md: '1em', lg: '1em', xl: '1em'}}}>
             <LocalizationProvider
               adapterLocale={ptBR}
               dateAdapter={AdapterDateFns}
             >
-              <DatePicker />
+              <DatePicker width="33%" id="startDate" label="Data de Início" />
             </LocalizationProvider>
-          </div>
-          <Button
+
+            <LocalizationProvider
+              adapterLocale={ptBR}
+              dateAdapter={AdapterDateFns}
+            >
+              <DatePicker width="33%" id="endDate" label="Data de Finalização" />
+            </LocalizationProvider>
+
+            <LocalizationProvider
+              adapterLocale={ptBR}
+              dateAdapter={AdapterDateFns}
+            >
+              <DatePicker width="33%" id="deadline" label="Previsão de Entrega" />
+            </LocalizationProvider>
+          </Box>
+      <hr />
+
+      < Button
             size="large"
             sx={{ mt: 5, mb: 2 }}
             variant="outlined"
@@ -125,6 +155,7 @@ function ProjectForm({ addProject }) {
             Cadastrar
           </Button>
         </form>
+</Box>
       </div>
     </section>
   );
