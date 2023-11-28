@@ -1,7 +1,8 @@
-import { Grid, Typography } from "@mui/material";
-import "./style.css";
+import { useState } from 'react';
+import { Grid, Typography } from '@mui/material';
+import dataTeams from '../../../data/data-teams.json';
 
-function Project({
+function Project( {
   id,
   title,
   description,
@@ -11,40 +12,64 @@ function Project({
   startDate,
   endDate,
   status,
-  deleteProject,
-}) {
+  deleteProject
+  } ) {
+
+  const [teams] = useState(dataTeams);
+  const getTeamNameByID = (id) => {
+    const targetTeam = teams.find((team) => team.id === id);
+    return targetTeam.name;
+  }
+
   return (
     <>
-    <div className="project">
-      <Grid container className="project-content" direction={"row"}>
+      <Grid
+        container
+      >
         <Grid item xs={12}>
-          <Typography className="project-title">{title}</Typography>
+          <Typography variant='h5'>
+            {title || ''}
+          </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography className="project-actions" variant="body1">{description}</Typography>
+          <Typography variant='body2'>
+            {description || ''}
+          </Typography>
         </Grid>
         <Grid item xs={4}>
-          <Typography variant="body1">{client}</Typography>
+          <Typography variant='body2'>
+            Cliente: {client || ''}
+          </Typography>
         </Grid>
         <Grid item xs={4}>
-          <Typography variant="body1">Equipe {idTeam}</Typography>
+          <Typography variant='body2'>
+            Equipe: {idTeam || ''}
+          {getTeamNameByID(idTeam)}
+          </Typography>
         </Grid>
-        <Grid item xs={4}>
-          <Typography variant="body1">Previsão {deadline}</Typography>
-          <Typography variant="body1">Início {startDate}</Typography>
-          <Typography variant="body1">Término {endDate}</Typography>
-          <Typography variant="body1">{status}</Typography>
+        <Grid item xs={2}>
+          <Typography variant='body2'>
+            Previsão: {deadline || ''}
+          </Typography>
+          <Typography variant='body2'>
+            Início: {startDate || ''}
+          </Typography>
+          <Typography variant='body2'>
+            Término: {endDate || ''}
+          </Typography>
+          <Typography className={`project-${status}}` variant='body2'>
+            {status || ''}
+          </Typography>
         </Grid>
-        <div className="project-actions">
-          <button className="btn-delete" onClick={() => deleteProject(id)}>
-            x
-          </button>
-        </div>
+        <Grid item xs={1}>
+          <div className='task-actions'>
+            <button className='btn-delete' onClick={() => deleteProject(id)}>x</button>
+          </div>
+        </Grid>
       </Grid>
       <hr />
-    </div>
     </>
-  );
+  )
 }
 
 export default Project;
