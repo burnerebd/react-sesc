@@ -33,7 +33,7 @@ p {
 
 span,
 label {
-  font-size: 0.725em;
+  font-size: 0.725rem;
 }
 
 label {
@@ -188,6 +188,11 @@ textarea {
   background-color: #f86484;
 }
 
-.MuiOutlinedInput-notchedOutline legend {
-  font-size: 15.5px;
+.MuiOutlinedInput-notchedOutline span {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
+
+/* .MuiOutlinedInput-notchedOutline legend { */
+/*   font-family: 'Roboto'; */
+/*   font-size: 13px; */
+/* } */
