@@ -4,6 +4,7 @@ import { Footer } from "../../components";
 import "./style.css";
 
 function HomePage() {
+
   return (
     <>
       <main>
