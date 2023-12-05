@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HomePage, TasksPage, ProjectsPage } from "./pages";
 import { ProjectProvider } from "./context/project-context/index.jsx";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
