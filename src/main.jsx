@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import { TaskProvider } from "./context/task-context/index.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-import App from "./App.jsx";
 import { HomePage, TasksPage, ProjectsPage } from "./pages";
+import { ProjectProvider } from "./context/project-context/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +24,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ProjectProvider>
+    <TaskProvider>
+        <RouterProvider router={router} />
+    </TaskProvider>
+    </ProjectProvider>
   </React.StrictMode>,
 );

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Grid, Typography } from '@mui/material';
-import dataTeams from '../../../data/data-teams.json';
+import dataTeams from "../../../data/data-teams.json";
 
 function Project( {
   id,
@@ -14,57 +14,77 @@ function Project( {
   status,
   deleteProject
   } ) {
-
   const [teams] = useState(dataTeams);
-  const getTeamNameByID = (id) => {
-    const targetTeam = teams.find((team) => team.id === id);
-    return targetTeam.name;
+
+  const getNameTeamById = (id) => {
+    const filteredTeam = teams.find((team) => team.id === id )
+    return filteredTeam.name;
   }
 
   return (
     <>
-      <Grid
-        container
-      >
-        <Grid item xs={12}>
-          <Typography variant='h5'>
-            {title || ''}
+      <Grid container>
+        <Grid item xs={12} paddingBottom={2}>
+          <Typography variant='h5' marginRight={2} display="inline">
+            {title}
+          </Typography>
+          <Typography variant='body2' component="span" className={`task-${status}`}>
+            {status}
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography variant='body2'>
-            {description || ''}
+            {description}
           </Typography>
         </Grid>
-        <Grid item xs={4}>
-          <Typography variant='body2'>
-            Cliente: {client || ''}
-          </Typography>
-        </Grid>
-        <Grid item xs={4}>
-          <Typography variant='body2'>
-            Equipe: {idTeam || ''}
-          {getTeamNameByID(idTeam)}
-          </Typography>
-        </Grid>
-        <Grid item xs={2}>
-          <Typography variant='body2'>
-            Previsão: {deadline || ''}
-          </Typography>
-          <Typography variant='body2'>
-            Início: {startDate || ''}
-          </Typography>
-          <Typography variant='body2'>
-            Término: {endDate || ''}
-          </Typography>
-          <Typography className={`project-${status}}` variant='body2'>
-            {status || ''}
-          </Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <div className='task-actions'>
-            <button className='btn-delete' onClick={() => deleteProject(id)}>x</button>
-          </div>
+        <Grid item xs={12} paddingTop={2}>
+          <Grid container>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Cliente
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {client}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Equipe
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {getNameTeamById(idTeam)}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Previsão
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {deadline}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Início
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {startDate}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Término
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {endDate}
+              </Typography>
+            </Grid>
+            <Grid item xs={2} display="flex" justifyContent="flex-end">
+              <div className='task-actions'>
+                <button className='btn-delete' onClick={() => deleteProject(id)}>x</button>
+              </div>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
       <hr />
