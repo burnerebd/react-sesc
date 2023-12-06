@@ -7,8 +7,8 @@ export const TaskProvider = ({children}) => {
 
   const [tasks, setTasks] = useState(dataTasks);
 
-  const addTask = (title, category, member) => {
-    if (!title || !category || !member) {
+  const addTask = (title, category, member, idProject) => {
+    if (!title || !category || !member || !idProject) {
       alert("Todos os campos são obrigatórios");
       return;
     }
