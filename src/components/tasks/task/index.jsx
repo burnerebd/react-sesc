@@ -1,15 +1,27 @@
+import { useContext } from "react";
+import { ProjectContext } from "../../../context/project-context";
+import { Typography } from "@mui/material";
 import "./style.css";
 
 function Task({
   id,
-  member,
   title,
+  member,
   category,
   status,
-  deleteTask,
+  idProject,
   startTask,
   closeTask,
+  deleteTask,
 }) {
+
+  const { projects } = useContext(ProjectContext);
+
+  const getTitleProjectById = (id) => {
+    const filteredProject = projects.find((currentProject) => currentProject.id == id )
+    return filteredProject.title;
+  }
+
   return (
     <>
       <div className="task">
@@ -18,7 +30,10 @@ function Task({
           className="task-img-member"
         />
         <div className="task-content">
-          <h2 className="task-title">{title}</h2>
+          <Typography variant="h6">{title}</Typography>
+          <Typography variant="body2" marginBottom={2}>
+            {`Projeto: ${getTitleProjectById(idProject)}`}
+          </Typography>
           <span className="task-member">{member}</span>
           <span className="task-category">{category}</span>
           <span className={`task-${status}`}>{status}</span>

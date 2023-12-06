@@ -25,6 +25,7 @@ function App() {
         title,
         category,
         member,
+        idProject,
         status: "todo",
       },
     ];

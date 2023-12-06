@@ -4,7 +4,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { ptBR } from "date-fns/locale";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Box, MenuItem, TextField } from "@mui/material";
+import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
 
 function ProjectForm({ addProject }) {
   const [teams] = useState(dataTeams);
@@ -62,7 +62,9 @@ function ProjectForm({ addProject }) {
             "& .MuiTextField-root": { marginY: 1 },
           }}
         >
-          <h1>Cadastrar projeto</h1>
+        <Typography variant="h1" fontSize={32} fontWeight={500}>
+            Cadastrar Projeto
+        </Typography>
           <hr />
           <form onSubmit={handleSubmit}>
             <TextField
@@ -163,9 +165,7 @@ function ProjectForm({ addProject }) {
               </LocalizationProvider>
             </Box>
             <hr />
-            <button className="btn-register" type="submit">
-              Cadastrar
-            </button>
+            <Button sx={{borderRadius: 20}} color="success" variant="contained" type="submit">Cadastrar</Button>
           </form>
         </Box>
       </div>

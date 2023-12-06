@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import dataTasks from "../../data/data-tasks.json";
+import { createContext, useState } from "react"
+import dataTasks from "../../data/data-tasks.json"
 
 export const TaskContext = createContext({});
 
@@ -8,11 +8,8 @@ export const TaskProvider = ({children}) => {
   const [tasks, setTasks] = useState(dataTasks);
 
   const addTask = (title, category, member, idProject) => {
-    if (!title || !category || !member || !idProject) {
-      alert("Todos os campos são obrigatórios");
-      return;
-    }
-    const newTaskArr = [
+    if(!title || !category || !member || !idProject) return;
+    const newTaskArray = [
       ...tasks,
       {
         id: Math.floor(Math.random() * 10000),
@@ -20,39 +17,37 @@ export const TaskProvider = ({children}) => {
         category,
         member,
         status: "todo",
-      },
+        idProject
+      }
     ];
-    setTasks(newTaskArr);
-  };
+    setTasks(newTaskArray);
+  }
+
+  const startTask = (id) => {
+    const newTasks = [...tasks];
+    newTasks.map((task) => 
+      task.id === id ? (task.status = 'doing') : task
+    );
+    setTasks(newTasks);
+  }
+
+  const closeTask = (id) => {
+    const newTasks = [...tasks];
+    newTasks.map((task) => 
+      task.id === id ? (task.status = 'done') : task
+    );
+    setTasks(newTasks);
+  }
 
   const deleteTask = (id) => {
     const newTasks = [...tasks];
-    const filteredTasks = newTasks.filter((task) =>
-      task.id !== id ? task : null,
-    );
+    const filteredTasks = newTasks.filter(task => task.id !== id ? task : null);
     setTasks(filteredTasks);
-  };
+  }
 
-  const startTask = (id) => {
-    const newTasks = [...tasks]; // assign method might be used if we wanted to change the 'tasks' array directly instead of creating a new one
-    newTasks.map((task) => {
-      if (task.id === id) task.status = "doing";
-      else task;
-    });
-    setTasks(newTasks);
-  };
-
-  const closeTask = (id) => {
-    const newTasks = [...tasks]; // assign method might be used if we wanted to change the 'tasks' array directly instead of creating a new one
-    newTasks.map((task) => {
-      if (task.id === id) task.status = "done";
-      else task;
-    });
-    setTasks(newTasks);
-  };
-    return (
-        <TaskContext.Provider value={{tasks, addTask, startTask, deleteTask, closeTask}}>
-            {children}
-        </TaskContext.Provider>
-    )
+  return (
+    <TaskContext.Provider value={{ tasks, addTask, startTask, closeTask, deleteTask }}>
+      {children}
+    </TaskContext.Provider>
+  );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Grid, Typography } from '@mui/material';
 import dataTeams from "../../../data/data-teams.json";
+import "./style.css"
 
 function Project( {
   id,
@@ -28,7 +29,7 @@ function Project( {
           <Typography variant='h5' marginRight={2} display="inline">
             {title}
           </Typography>
-          <Typography variant='body2' component="span" className={`task-${status}`}>
+          <Typography variant='body2' component="span" className={`project-${status}`}>
             {status}
           </Typography>
         </Grid>
@@ -80,7 +81,7 @@ function Project( {
               </Typography>
             </Grid>
             <Grid item xs={2} display="flex" justifyContent="flex-end">
-              <div className='task-actions'>
+              <div className='project-actions'>
                 <button className='btn-delete' onClick={() => deleteProject(id)}>x</button>
               </div>
             </Grid>
