@@ -19,10 +19,34 @@ export const ProjectProvider = ({ children }) => {
   ) => {
     if (!title || !description || !deadline || !client || !status || !idTeam)
       return;
-    const newProjectsArray = [
-      ...projects,
-      {
-        id: Math.floor(Math.random() * 10000),
+
+    const newProjectsArray = [...projects];
+
+    if (projectToBeEdited) {
+      newProjectsArray.map((project) => {
+        if (project.id == projectToBeEdited.id) {
+          project.id = projectToBeEdited.id;
+          project.status = projectToBeEdited.status;
+          project.title = title;
+          project.description = description;
+          (project.startDate = startDate
+            ? format(startDate, "yyyy/MM/dd")
+            : ""),
+            (project.deadline = deadline ? format(deadline, "yyyy/MM/dd") : ""),
+            (project.endDate = endDate ? format(endDate, "yyyy/MM/dd") : ""),
+            (project.client = client);
+          project.idTeam = idTeam;
+          setProjects(newProjectsArray);
+          setProjectToBeEdited(null);
+        } else {
+          project;
+        }
+      });
+    } else {
+      newProjectsArray.push({
+        id: projectToBeEdited
+          ? projectToBeEdited.id
+          : Math.floor(Math.random() * 10000),
         title,
         description,
         startDate: startDate ? format(startDate, "yyyy/MM/dd") : "",
@@ -30,11 +54,9 @@ export const ProjectProvider = ({ children }) => {
         endDate: endDate ? format(endDate, "yyyy/MM/dd") : "",
         client,
         idTeam,
-        status: "todo",
-      },
-    ];
-
-    console.log("newProjectsArray", newProjectsArray);
+        status: projectToBeEdited ? projectToBeEdited.status : "todo",
+      });
+    }
     setProjects(newProjectsArray);
   };
 
@@ -46,8 +68,28 @@ export const ProjectProvider = ({ children }) => {
     setProjects(filteredProjects);
   };
 
+  const getProjectByID = (id) => {
+    const targetProject = projects.find((project) => project.id == id);
+    return targetProject;
+  };
+
+  const [projectToBeEdited, setProjectToBeEdited] = useState(null);
+
+  const editProject = (id) => {
+    setProjectToBeEdited(getProjectByID(id));
+  };
+
   return (
-    <ProjectContext.Provider value={{ projects, addProject, deleteProject }}>
+    <ProjectContext.Provider
+      value={{
+        projects,
+        addProject,
+        deleteProject,
+        editProject,
+        projectToBeEdited,
+        setProjectToBeEdited,
+      }}
+    >
       {children}
     </ProjectContext.Provider>
   );
