@@ -36,14 +36,13 @@ function HomePage() {
                   title="O Curso"
                 />
                 <material.CardContent>
-                  <material.Typography variant="h5">Nosso curso</material.Typography>
+                  <material.Typography variant="h5">O projeto original</material.Typography>
                   <material.Typography variant="body2">
-                    Este curso convida diferentes públicos a experimentarem o
+                    O projeto original propôs a diferentes públicos a experimentação com
                     React, uma das bibliotecas JavaScript mais utilizadas na
-                    atualidade. Durante as aulas, vamos explorar o potencial da
-                    criação de componentes dinâmicos e construir uma aplicação
-                    do zero a partir das boas práticas de desenvolvimento
-                    front-end e do consumo de APIs.
+                    atualidade. Por meio de criação de componentes dinâmicos foi construída uma aplicação
+                    do zero fazendo uso de boas práticas de desenvolvimento
+                    front-end e do consumo de APIs*.
                   </material.Typography>
                 </material.CardContent>
                 <material.CardActions

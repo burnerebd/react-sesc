@@ -4,6 +4,7 @@ import { TaskProvider } from "./context/task-context/index.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HomePage, TasksPage, ProjectsPage } from "./pages";
 import { ProjectProvider } from "./context/project-context/index.jsx";
+import "./main.css";
 
 
 const router = createBrowserRouter([

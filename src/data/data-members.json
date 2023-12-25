@@ -1,57 +1,32 @@
 [
   {
     "id": 1,
-    "name": "Amanda Silva",
-    "profile": "amandaessilva"
+    "name": "Miguel",
+    "profile": "miguelssilva"
   },
   {
     "id": 2,
-    "name": "Paula Joyce dos Santos",
-    "profile": "paulajoyce"
+    "name": "Gael",
+    "profile": "gaeldeert"
   },
   {
     "id": 3,
-    "name": "Leandro Lázaro Firmino de Carvalho",
-    "profile": "leufmt"
+    "name": "Helena",
+    "profile": "hetecomp"
   },
   {
     "id": 4,
-    "name": "Caio Felipe",
-    "profile": "caiofelipeba"
+    "name": "Arthur",
+    "profile": "artdantas"
   },
   {
     "id": 5,
-    "name": "Alisson Cavalcanti",
-    "profile": "alissoncavalcanti"
+    "name": "Alice",
+    "profile": "aliceavant"
   },
   {
     "id": 6,
-    "name": "Luciano Mendonca",
-    "profile": ""
-  },
-  {
-    "id": 7,
-    "name": "Sérgio Roberto Sanchez Filho",
-    "profile": "SergioRSanchez"
-  },
-  {
-    "id": 8,
-    "name": "Amanda Domingues",
-    "profile": "amandasanfd"
-  },
-  {
-    "id": 9,
-    "name": "Marcelo S Teles",
-    "profile": "binskk"
-  },
-  {
-    "id": 10,
-    "name": "Nilson José Teixeira de Souza",
-    "profile": "nilsonjts"
-  },
-  {
-    "id": 11,
-    "name": "Carolina Moreira Batatinha de Souza",
-    "profile": "CarolinaBatatinha"
+    "name": "Heitor",
+    "profile": "heitorlca"
   }
 ]

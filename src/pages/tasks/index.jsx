@@ -1,4 +1,3 @@
-import "../../App.css";
 import { Footer, TaskForm, TaskList, Header } from "../../components";
 import { useContext } from "react";
 import { TaskContext } from "../../context/task-context";
