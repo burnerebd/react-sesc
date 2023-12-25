@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
-import dataProjects from "../../data/data-projects.json";
 import { format } from "date-fns";
+import dataProjects from "../../data/data-projects.json";
 
 export const ProjectContext = createContext({});
 
@@ -44,9 +44,7 @@ export const ProjectProvider = ({ children }) => {
       });
     } else {
       newProjectsArray.push({
-        id: projectToBeEdited
-          ? projectToBeEdited.id
-          : Math.floor(Math.random() * 10000),
+        id: projectToBeEdited ? projectToBeEdited.id : Math.floor(Math.random() * 10000),
         title,
         description,
         startDate: startDate ? format(startDate, "yyyy/MM/dd") : "",
@@ -77,6 +75,7 @@ export const ProjectProvider = ({ children }) => {
 
   const editProject = (id) => {
     setProjectToBeEdited(getProjectByID(id));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

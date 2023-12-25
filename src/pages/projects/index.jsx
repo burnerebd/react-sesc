@@ -1,5 +1,5 @@
-import { Footer, Header, ProjectForm, ProjectsList } from "../../components";
 import { useContext } from "react";
+import { Footer, Header, ProjectForm, ProjectsList } from "../../components";
 import { ProjectContext } from "../../context/project-context";
 
 function ProjectsPage() {

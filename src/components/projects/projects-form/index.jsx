@@ -5,14 +5,7 @@ import { ptBR } from "date-fns/locale";
 import { format } from "date-fns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import {
-  Box,
-  Button,
-  MenuItem,
-  TextField,
-  Typography,
-  buttonGroupClasses,
-} from "@mui/material";
+import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
 
 function ProjectForm({ addProject, projectToBeEdited, setProjectToBeEdited }) {
   const [teams] = useState(dataTeams);
@@ -65,9 +58,9 @@ function ProjectForm({ addProject, projectToBeEdited, setProjectToBeEdited }) {
     clearFields();
 
     if (projectToBeEdited) {
-      alert("Projeto Alterado com Sucesso!");
+      alert("Projeto alterado com sucesso!");
     } else {
-      alert("Projeto Cadastrado com sucesso!");
+      alert("Projeto cadastrado com sucesso!");
     }
   };
 
@@ -78,19 +71,13 @@ function ProjectForm({ addProject, projectToBeEdited, setProjectToBeEdited }) {
       setCurrentClient(projectToBeEdited.client);
       setCurrentStatus(projectToBeEdited.status);
       setCurrentTeam(projectToBeEdited.idTeam);
-      setCurrentStartDate(
-        projectToBeEdited.startDate
-          ? new Date(projectToBeEdited.startDate)
-          : null,
-      );
-      setCurrentEndDate(
-        projectToBeEdited.endDate ? new Date(projectToBeEdited.endDate) : null,
-      );
+      setCurrentStartDate(projectToBeEdited.startDate ? new Date(projectToBeEdited.startDate) : null,);
+      setCurrentEndDate(projectToBeEdited.endDate ? new Date(projectToBeEdited.endDate) : null,);
       setCurrentDeadline(new Date(projectToBeEdited.deadline));
     }
   }, [projectToBeEdited]);
 
-  let buttonRegister, titleRegister, buttonCancel;
+  let titleRegister, buttonCancel;
   let buttonRegion;
 
   buttonCancel = (
@@ -106,33 +93,33 @@ function ProjectForm({ addProject, projectToBeEdited, setProjectToBeEdited }) {
       Cancelar
     </Button>
   );
-  buttonRegister = (
+  const buttonRegister = (text) => (
     <Button
       sx={{ borderRadius: 20 }}
       color="success"
       variant="contained"
       type="submit"
     >
-      Confirmar
+    {text}
     </Button>
   );
 
   if (projectToBeEdited) {
     buttonRegion = (
       <Box>
-        {buttonRegister}
+        {buttonRegister("Confirmar")}
         {buttonCancel}
       </Box>
     );
     titleRegister = (
-      <Typography variant="h1" fontSize={32} fontWeight={500}>
+      <Typography id="alt-title" variant="h1" fontSize={32} fontWeight={500}>
         Alterar Projeto
       </Typography>
     );
   } else {
-    buttonRegion = <Box>{buttonRegister}</Box>;
+    buttonRegion = <Box>{buttonRegister("Cadastrar")}</Box>;
     titleRegister = (
-      <Typography variant="h1" fontSize={32} fontWeight={500}>
+      <Typography id="title" variant="h1" fontSize={32} fontWeight={500}>
         Cadastrar Projeto
       </Typography>
     );
